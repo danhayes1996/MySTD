@@ -1,0 +1,10 @@
+To add:
+	- stack
+	- queue
+	- deque (double ended queue)
+	- priorty queue
+	- set
+	- map
+	- tree (binary tree)
+	- array
+	- string
