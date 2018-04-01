@@ -24,6 +24,8 @@
     <ClInclude Include="src\linkedlist.h" />
     <ClInclude Include="src\stack.h" />
     <ClInclude Include="src\tests\testlinkedlist.h" />
+    <ClInclude Include="src\tests\testlistspeed.h" />
+    <ClInclude Include="src\timer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />

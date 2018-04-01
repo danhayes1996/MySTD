@@ -1,6 +1,7 @@
 #pragma once
 
-#include "linkedlist.h"
+#include <iostream>
+#include "../linkedlist.h"
 
 void testLinkedList() {
 	//CONSTRUCTOR
