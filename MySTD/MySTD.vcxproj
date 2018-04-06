@@ -23,12 +23,14 @@
     <ClInclude Include="src\arraylist.h" />
     <ClInclude Include="src\linkedlist.h" />
     <ClInclude Include="src\stack.h" />
+    <ClInclude Include="src\string.h" />
     <ClInclude Include="src\tests\testlinkedlist.h" />
     <ClInclude Include="src\tests\testlistspeed.h" />
     <ClInclude Include="src\timer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\string.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Notes.txt" />

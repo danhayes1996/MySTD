@@ -146,7 +146,7 @@ namespace mystd
 			return returnItem;
 		}
 
-		T removeAt(unsigned int index)
+		T remove_at(unsigned int index)
 		{
 			if (index >= m_DataCount) throw std::out_of_range("");
 
@@ -190,7 +190,7 @@ namespace mystd
 			return false;
 		}
 
-		bool removeRange(unsigned int indexFrom, unsigned int indexTo)
+		bool remove_range(unsigned int indexFrom, unsigned int indexTo)
 		{
 			if (indexFrom >= indexTo || indexFrom >= m_DataCount || indexTo > m_DataCount) return false;
 
@@ -237,7 +237,7 @@ namespace mystd
 			return true;
 		}
 
-		bool removeRangeInclusive(unsigned int indexFrom, unsigned int indexTo)
+		bool remove_range_i(unsigned int indexFrom, unsigned int indexTo)
 		{
 			return removeRange(indexFrom, indexTo + 1);
 		}
@@ -267,7 +267,7 @@ namespace mystd
 			return false;
 		}
 
-		int indexOf(T item) const
+		int index_of(T item) const
 		{
 			int index = 0;
 			for (Node* current = m_Start; current != nullptr; current = current->next, index++)
@@ -275,7 +275,7 @@ namespace mystd
 			return -1;
 		}
 
-		int lastIndexOf(T item) const
+		int last_index_of(T item) const
 		{
 			int index = m_DataCount - 1;
 			for (Node* current = m_End; current != nullptr; current = current->prev, index--)
@@ -327,7 +327,7 @@ namespace mystd
 		}
 
 		//TODO: delete this function
-		void printAddressTrace() const 
+		void print_address_trace() const 
 		{
 			Node* current = m_Start;
 			std::cout << "size:" << size() << std::endl;

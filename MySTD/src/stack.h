@@ -131,7 +131,8 @@ namespace mystd
 			return stream << current->item << "]";
 		}
 
-		void printAddressTrace() const 
+		//delete this function ( this is for testing only )
+		void print_address_trace() const 
 		{
 			Node* current = m_Top;
 			std::cout << "size:" << size() << std::endl;

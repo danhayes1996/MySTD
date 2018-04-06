@@ -76,7 +76,7 @@ namespace mystd
 			delete[] m_Data;
 		}
 
-		linkedlist<T> toLinkedList() const {
+		linkedlist<T> to_linked_list() const {
 			linkedlist<T> list;
 			for (size_t i = 0; i < m_DataCount; i++) list.push_back(m_Data[i]);
 			return list;
@@ -118,7 +118,7 @@ namespace mystd
 			return ret;
 		}
 
-		T removeAt(unsigned int index) 
+		T remove_at(unsigned int index) 
 		{
 			if (index >= m_DataCount) throw std::out_of_range("");
 			T item = m_Data[index];
@@ -138,7 +138,7 @@ namespace mystd
 		}
 
 		//indexFrom = inclusive, indexTo = exclusive
-		void removeRange(unsigned int indexFrom, unsigned int indexTo) 
+		void remove_range(unsigned int indexFrom, unsigned int indexTo) 
 		{ 
 			if (indexFrom >= indexTo || indexFrom > m_DataCount || indexTo > m_DataCount) return;
 
@@ -149,7 +149,7 @@ namespace mystd
 		}
 
 		//indexFrom = inclusive, indexTo = inclusive
-		void removeRangeInclusive(unsigned int indexFrom, unsigned int indexTo) 
+		void remove_range_i(unsigned int indexFrom, unsigned int indexTo) 
 		{ 
 			removeRange(indexFrom, indexTo + 1);
 		}
@@ -167,12 +167,12 @@ namespace mystd
 			return m_DataCount;
 		}
 
-		void trimToSize() 
+		void trim_to_size() 
 		{
 			if (m_DataCount != m_DataSize) resize(m_DataCount);
 		}
 
-		void ensureCapacity(size_t minCapacity) 
+		void ensure_capacity(size_t minCapacity) 
 		{
 			if (minCapacity > m_DataSize) resize(minCapacity);
 		}
@@ -182,14 +182,14 @@ namespace mystd
 			return !m_DataCount;
 		}
 
-		int indexOf(T item) const 
+		int index_of(T item) const 
 		{
 			for (size_t i = 0; i < m_DataCount; i++)
 				if (item == m_Data[i]) return i;
 			return -1;
 		}
 
-		int lastIndexOf(T item) const 
+		int last_index_of(T item) const 
 		{
 			for (size_t i = m_DataCount - 1; i >= 0; i--)
 				if (item == m_Data[i]) return i;
