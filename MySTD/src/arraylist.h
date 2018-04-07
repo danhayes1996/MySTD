@@ -14,6 +14,7 @@ namespace mystd
 	class arraylist 
 	{
 		friend class linkedlist<T>;
+
 	private:
 		T* m_Data;
 		size_t m_DataSize;
@@ -199,12 +200,18 @@ namespace mystd
 			return indexOf(item) != -1;
 		}
 
-		T const& get(unsigned int index) const 
+		const T& get(unsigned int index) const
 		{
 			return operator[](index);
 		}
 
-		T const& operator[](unsigned int index) const 
+		const T& operator[](unsigned int index) const
+		{
+			if (index >= m_DataCount) throw std::out_of_range("");
+			return m_Data[index];
+		}
+
+		T& operator[](unsigned int index)
 		{
 			if (index >= m_DataCount) throw std::out_of_range("");
 			return m_Data[index];

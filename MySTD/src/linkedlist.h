@@ -13,8 +13,8 @@ namespace mystd
 	template<typename T>
 	class linkedlist 
 	{
-
 		friend class arraylist<T>;
+
 	private:
 		struct Node 
 		{
@@ -283,7 +283,7 @@ namespace mystd
 			return -1;
 		}
 
-		T const& get(unsigned int index) const
+		const T& get(unsigned int index) const
 		{
 			if (index >= m_DataCount) throw std::out_of_range("");
 			Node* n = m_Start;
@@ -291,7 +291,14 @@ namespace mystd
 			return n->item;
 		}
 
-		T const& operator[](unsigned int index) const {
+		const T& operator[](unsigned int index) const {
+			if (index >= m_DataCount) throw std::out_of_range("");
+			Node* current = m_Start;
+			for (; index != 0; current = current->next, index--);
+			return current->item;
+		}
+
+		T& operator[](unsigned int index) {
 			if (index >= m_DataCount) throw std::out_of_range("");
 			Node* current = m_Start;
 			for (; index != 0; current = current->next, index--);

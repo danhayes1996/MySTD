@@ -57,7 +57,6 @@ namespace mystd
 			}
 		}
 
-
 		bool empty() const
 		{
 			return !m_DataCount;

@@ -3,7 +3,7 @@ To add:
 	- queue							X
 	- deque (double ended queue)	X
 	- priorty queue					X
-	- set							X
+	- set							DONE
 	- map							X
 	- tree (binary tree)			X
 	- array							DONE

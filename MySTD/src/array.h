@@ -62,12 +62,6 @@ namespace mystd {
 			return &m_Data[N - 1];
 		}
 
-		T& at(size_t index) 
-		{
-			if (index >= N) throw std::out_of_range("");
-			return m_Data[index];
-		}
-
 		T const& at(size_t index) const 
 		{
 			if (index >= N) throw std::out_of_range("");
