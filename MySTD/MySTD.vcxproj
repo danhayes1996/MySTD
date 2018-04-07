@@ -22,6 +22,7 @@
     <ClInclude Include="src\array.h" />
     <ClInclude Include="src\arraylist.h" />
     <ClInclude Include="src\linkedlist.h" />
+    <ClInclude Include="src\set.h" />
     <ClInclude Include="src\stack.h" />
     <ClInclude Include="src\string.h" />
     <ClInclude Include="src\tests\testlinkedlist.h" />

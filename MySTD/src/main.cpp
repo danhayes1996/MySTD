@@ -1,12 +1,10 @@
 #include <iostream>
 
-#include "string.h"
+#include "set.h"
 
 void main(void)
 {
-	mystd::string str = "abc";
-	mystd::string str2 = "abc";
-	std::cout << (str <= str2) << std::endl;
-
+	const mystd::set<int> s;
+	s.begin();
 	std::cin.get();
 }

@@ -20,7 +20,7 @@ namespace mystd
 		size_t m_DataCount;
 
 	private:
-		inline bool needToResize() const 
+		inline bool need_to_resize() const 
 		{
 			return m_DataSize == m_DataCount;
 		}
@@ -51,8 +51,6 @@ namespace mystd
 		arraylist(const arraylist& other) 
 			: m_Data(new T[other.m_DataCount]), m_DataSize(other.m_DataCount), m_DataCount(other.m_DataCount) 
 		{
-			m_DataSize = m_DataCount = other.m_DataCount;
-			m_Data = new T[m_DataSize]; 
 			for (size_t i = 0; i < m_DataSize; i++)
 				m_Data[i] = other[i];
 		}
@@ -84,7 +82,7 @@ namespace mystd
 
 		bool push_back(T item) 
 		{
-			if (needToResize()) resize(m_DataSize * 2);
+			if (need_to_resize()) resize(m_DataSize * 2);
 
 			m_Data[m_DataCount] = item;
 			m_DataCount++;
@@ -93,7 +91,7 @@ namespace mystd
 
 		bool push_at(unsigned int index, T item) 
 		{
-			if (needToResize()) resize(m_DataSize * 2);
+			if (need_to_resize()) resize(m_DataSize * 2);
 
 			if (index >= m_DataCount)
 			{

@@ -47,7 +47,7 @@ namespace mystd {
 			return m_Data; 
 		}
 
-		T* const begin() const 
+		const T* begin() const
 		{
 			return m_Data;
 		}
@@ -57,7 +57,7 @@ namespace mystd {
 			return &m_Data[N - 1];
 		}
 
-		T* const end() const 
+		const T* end() const 
 		{
 			return &m_Data[N - 1];
 		}

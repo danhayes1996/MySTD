@@ -1,10 +1,12 @@
 To add:
-	- stack
-	- queue
-	- deque (double ended queue)
-	- priorty queue
-	- set
-	- map
-	- tree (binary tree)
-	- array
-	- string
+	- stack							DONE
+	- queue							X
+	- deque (double ended queue)	X
+	- priorty queue					X
+	- set							X
+	- map							X
+	- tree (binary tree)			X
+	- array							DONE
+	- arraylist						DONE
+	- linkedlist					DONE
+	- string						DONE

@@ -1,6 +1,5 @@
 #include "string.h"
 #include <stdexcept>
-#include <iostream>
 
 mystd::string::string()
 	: m_Buffer(nullptr), m_BufferCount(0)
@@ -15,7 +14,7 @@ mystd::string::string(const char* text)
 }
 
 mystd::string::string(const string& text)
-{
+{	
 	m_BufferCount = text.length();
 	m_Buffer = new char[m_BufferCount + 1];
 	memcpy(m_Buffer, text.m_Buffer, m_BufferCount);
@@ -158,7 +157,7 @@ mystd::string mystd::string::trim() const
 	return substr(start, end + 1);
 }
 
-mystd::string mystd::string::reverse()
+mystd::string mystd::string::reverse() const
 {
 	char* buffer = new char[m_BufferCount + 1];
 	for (size_t i = 0; i < m_BufferCount; i++)
@@ -249,4 +248,19 @@ bool mystd::operator!=(const mystd::string& left, const  mystd::string& right)
 std::ostream& mystd::operator<<(std::ostream& stream, const mystd::string& text)
 {
 	 return stream << text.m_Buffer;
+}
+
+std::istream& mystd::operator>>(std::istream& stream, mystd::string& obj)
+{
+	char* buffer = new char[MAX_STRING_LENGTH];
+	stream.getline(buffer, MAX_STRING_LENGTH, '\n');
+
+	//set obj data
+	obj.m_BufferCount = strlen(buffer);
+	obj.m_Buffer = new char[obj.m_BufferCount + 1];
+	memcpy(obj.m_Buffer, buffer, obj.m_BufferCount);
+	obj.m_Buffer[obj.m_BufferCount] = 0;
+
+	delete[] buffer;
+	return stream;
 }
