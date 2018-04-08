@@ -3,10 +3,11 @@
 #include <ostream>
 #include <initializer_list>
 #include <stdexcept>
+#include "compare.h"
 
 namespace mystd
 {
-	template<typename T, typename Compare>
+	template<typename T, typename Compare = mystd::less<T>>
 	class set
 	{
 	private:
@@ -81,7 +82,6 @@ namespace mystd
 				
 				//put item at correct index (to keep set ordered)
 				Compare c;
-				bool placed = false;
 				for (size_t i = 0; i < m_DataCount; i++)
 				{
 					if (c(m_Data[i], item))
@@ -168,7 +168,8 @@ namespace mystd
 		friend std::ostream& operator<<(std::ostream& stream, const set& s)
 		{
 			if (s.empty()) return stream << "set:[empty]" << std::endl;
-			stream << "set:[";
+			
+			stream << "set<" << typeid(T).name() << ">:[";
 			for (size_t i = 0; i < s.m_DataCount - 1; i++)
 				stream << s.m_Data[i] << ", ";
 			return stream << s[s.m_DataCount - 1] << "]";

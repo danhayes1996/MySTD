@@ -42,6 +42,9 @@
     <ClInclude Include="src\set.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\compare.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">

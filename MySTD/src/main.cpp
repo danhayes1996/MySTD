@@ -2,6 +2,8 @@
 #include <string>
 #include "set.h"
 #include "arraylist.h"
+#include <set>
+#include "compare.h"
 
 struct Data
 {
@@ -24,24 +26,23 @@ struct Data
 	}
 };
 
-
 struct comp
 {
 	bool operator()(const Data& left, const Data& right)
 	{
-		if (left.a > right.a) return true;
-		if (left.b > right.b) return true;
-		if (left.c > right.c) return true;
+		if (left.a < right.a) return true;
+		if (left.b < right.b) return true;
+		if (left.c < right.c) return true;
 		return false;
 	}
 };
 
-
 void main(void)
 {
-	const mystd::arraylist<Data> s = { {1, 2, "1"}, { 24, 122, "124" }, { 1, 2, "1" } };
-	
-	std::cout << s[1] << std::endl;
+	const mystd::set<Data, comp> s = { {1, 1, "1"},{ 2, 2, "2" },{ 3, 3, "3" }};
+	std::cout << s << std::endl;
+
+	mystd::set<int> s2;
 
 	std::cin.get();
 }
