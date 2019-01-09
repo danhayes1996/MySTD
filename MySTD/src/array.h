@@ -10,7 +10,8 @@ namespace mystd {
 	{
 	public:
 		array() 
-			: m_Data(new T[N]) { }
+			: m_Data(new T[N]) 
+		{ }
 
 		array(const std::initializer_list<T>& list)
 			: m_Data(new T[N])
@@ -39,6 +40,25 @@ namespace mystd {
 			return N;
 		}
 
+		size_t max_size() const
+		{
+			return N;
+		}
+
+		bool empty() const
+		{
+			return !N;
+		}
+
+		/* Sets val as the value for all the elements in the array */
+		void fill(const T& val)
+		{
+			for (unsigned int i = 0; i < N; i++)
+			{
+				m_Data[i] = val;
+			}
+		}
+
 		T* begin() 
 		{ 
 			return m_Data; 
@@ -57,6 +77,19 @@ namespace mystd {
 		const T* end() const 
 		{
 			return &m_Data[N - 1];
+		}
+
+		//add front/back const/non const functions when iterators are made
+
+		T* data()
+		{
+			return &m_Data[0];
+		}
+
+		T& at(size_t index)
+		{
+			if (index >= N) throw std::out_of_range("");
+			return m_Data[index];
 		}
 
 		T const& at(size_t index) const 

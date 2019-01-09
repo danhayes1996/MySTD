@@ -2,8 +2,11 @@
 #include <stdexcept>
 
 mystd::string::string()
-	: m_Buffer(nullptr), m_BufferCount(0)
-{ }
+{ 
+	m_BufferCount = 0;
+	m_Buffer = new char[1];
+	m_Buffer[0] = 0;
+}
 
 mystd::string::string(const char* text)
 {
@@ -18,6 +21,26 @@ mystd::string::string(const string& text)
 	m_BufferCount = text.length();
 	m_Buffer = new char[m_BufferCount + 1];
 	memcpy(m_Buffer, text.m_Buffer, m_BufferCount);
+	m_Buffer[m_BufferCount] = 0;
+}
+
+mystd::string::string(const string& text, size_t pos, size_t length/* = npos*/)
+{
+	*this = text.substr(pos, length);
+}
+
+mystd::string::string(const char* text, size_t length)
+	: m_Buffer(new char[length + 1]), m_BufferCount(length)
+{
+	memcpy(m_Buffer, text, m_BufferCount);
+	m_Buffer[m_BufferCount] = 0;
+}
+
+mystd::string::string(const std::initializer_list<char> list)
+	: m_Buffer(new char[list.size() + 1]), m_BufferCount(list.size())
+{
+	for (unsigned int i = 0; i < list.size(); i++)
+		m_Buffer[i] = *(list.begin() + i);
 	m_Buffer[m_BufferCount] = 0;
 }
 
@@ -102,17 +125,16 @@ size_t mystd::string::last_index_of(const string& charSeq, size_t index/* = npos
 	return npos;
 }
 
-
 mystd::string mystd::string::substr(size_t pos/* = 0*/, size_t length/* = npos*/) const
 {
 	if (pos >= m_BufferCount) throw std::out_of_range("pos is greater than the string length");
-	if (length >= m_BufferCount) length = m_BufferCount;
-	if (pos > length) return string();
-	
-	char* buffer = new char[length - pos + 1];
-	for (size_t i = 0; i < length - pos; i++)
-		buffer[i] = m_Buffer[i + pos];
-	buffer[length - pos] = 0;
+	if (length >= m_BufferCount) length = m_BufferCount - pos;
+	if (length == 0) return string();
+
+	char* buffer = new char[length + 1];
+	for (size_t i = 0; i < length; i++)
+		buffer[i] = m_Buffer[pos + i];
+	buffer[length] = 0;
 
 	string res = buffer;
 	delete[] buffer;
@@ -169,6 +191,26 @@ mystd::string mystd::string::reverse() const
 	return res;
 }
 
+mystd::string::iterator mystd::string::begin()
+{
+	return &m_Buffer[0];
+}
+
+mystd::string::const_iterator mystd::string::begin() const
+{
+	return &m_Buffer[0];
+}
+
+mystd::string::iterator mystd::string::end()
+{
+	return &m_Buffer[m_BufferCount];
+}
+
+mystd::string::const_iterator mystd::string::end() const
+{
+	return &m_Buffer[m_BufferCount];
+}
+
 char& mystd::string::at(size_t index)
 {
 	if(index >= m_BufferCount) throw std::out_of_range("index is greater than the string length");
@@ -189,6 +231,18 @@ char& mystd::string::operator[](size_t index)
 const char& mystd::string::operator[](size_t index) const
 {
 	return at(index);
+}
+
+mystd::string& mystd::string::operator=(const mystd::string& other)
+{
+	delete[] m_Buffer;
+
+	m_BufferCount = other.m_BufferCount;
+	m_Buffer = new char[m_BufferCount + 1];
+	memcpy(m_Buffer, other.m_Buffer, m_BufferCount);
+	m_Buffer[m_BufferCount] = 0;
+
+	return *this;
 }
 
 mystd::string mystd::operator+(const mystd::string& left, const mystd::string& right)
