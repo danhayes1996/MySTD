@@ -9,17 +9,6 @@ namespace mystd
 	template<typename T>
 	class stack
 	{
-	private:
-		struct Node
-		{
-			T item;
-			Node* next;
-		};
-
-	private:
-		Node* m_Top;
-		size_t m_DataCount;
-
 	public:
 		stack()
 			: m_Top(nullptr), m_DataCount(0) { }
@@ -34,6 +23,7 @@ namespace mystd
 		stack(const stack& other)
 			: m_Top(nullptr), m_DataCount(other.m_DataCount)
 		{
+			//HOW DOES THIS WORK?? HOW MUCH CAFFEINE WAS I ON
 			m_Top = new Node{ other.m_Top->item, nullptr };
 
 			Node* end = m_Top;
@@ -48,13 +38,7 @@ namespace mystd
 
 		~stack()
 		{
-			Node* current = m_Top;
-			for (size_t i = 0; i < m_DataCount; i++)
-			{
-				Node* next = current->next;
-				delete current;
-				current = next;
-			}
+			clear();
 		}
 
 		bool empty() const
@@ -69,10 +53,7 @@ namespace mystd
 
 		bool push(T item)
 		{
-			Node* newTop = new Node;
-
-			newTop->item = item;
-			newTop->next = m_Top;
+			Node* newTop = new Node{ item, m_Top };
 			m_Top = newTop;
 
 			m_DataCount++;
@@ -108,7 +89,7 @@ namespace mystd
 		T const& top() const
 		{
 			if (!m_DataCount) throw std::out_of_range("");
-				return m_Top->item;
+			return m_Top->item;
 		}
 
 		int search(T item) const
@@ -141,5 +122,14 @@ namespace mystd
 			}
 
 		}
+	private:
+		struct Node
+		{
+			T item;
+			Node* next;
+		};
+
+		Node* m_Top;
+		size_t m_DataCount;
 	};
 }

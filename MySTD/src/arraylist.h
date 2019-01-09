@@ -15,28 +15,6 @@ namespace mystd
 	{
 		friend class linkedlist<T>;
 
-	private:
-		T* m_Data;
-		size_t m_DataSize;
-		size_t m_DataCount;
-
-	private:
-		inline bool need_to_resize() const 
-		{
-			return m_DataSize == m_DataCount;
-		}
-
-		void resize(size_t newSize) 
-		{
-			T* temp = new T[newSize];
-			for (size_t i = 0; i < m_DataCount; i++)
-				temp[i] = m_Data[i];
-
-			delete[] m_Data;
-			m_Data = temp;
-			m_DataSize = newSize;
-		}
-
 	public:
 		arraylist(size_t size = 5) 
 			: m_Data(new T[size]), m_DataSize(size), m_DataCount(0) { }
@@ -245,5 +223,27 @@ namespace mystd
 				stream << list[i] << ", ";
 			return stream << list[list.m_DataCount - 1] << "]";
 		}
+
+	private:
+		inline bool need_to_resize() const
+		{
+			return m_DataSize == m_DataCount;
+		}
+
+		void resize(size_t newSize)
+		{
+			T* temp = new T[newSize];
+			for (size_t i = 0; i < m_DataCount; i++)
+				temp[i] = m_Data[i];
+
+			delete[] m_Data;
+			m_Data = temp;
+			m_DataSize = newSize;
+		}
+
+	private:
+		T* m_Data;
+		size_t m_DataSize;
+		size_t m_DataCount;
 	};
 }

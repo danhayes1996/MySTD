@@ -8,9 +8,6 @@ namespace mystd {
 	template<typename T, size_t N>
 	class array 
 	{
-	private:
-		T* m_Data;
-
 	public:
 		array() 
 			: m_Data(new T[N]) { }
@@ -99,5 +96,8 @@ namespace mystd {
 				stream << arr[i] << ", ";
 			return stream << arr[N - 1] << "]";
 		}
+
+	private:
+		T* m_Data;
 	};
 }

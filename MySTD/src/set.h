@@ -10,28 +10,6 @@ namespace mystd
 	template<typename T, typename Compare = mystd::less<T>>
 	class set
 	{
-	private:
-		T * m_Data;
-		size_t m_DataSize;
-		size_t m_DataCount;
-
-	private:
-		bool need_to_resize()
-		{
-			return m_DataCount == m_DataSize;
-		}
-
-		void resize(size_t size)
-		{
-			T* temp = new T[size];
-			for (size_t i = 0; i < m_DataCount; i++)
-				temp[i] = m_Data[i];
-
-			delete[] m_Data;
-			m_Data = temp;
-			m_DataSize = size;
-		}
-
 	public:
 		set(size_t size = 5)
 			: m_Data(new T[size]), m_DataSize(size), m_DataCount(0) { }
@@ -174,5 +152,27 @@ namespace mystd
 				stream << s.m_Data[i] << ", ";
 			return stream << s[s.m_DataCount - 1] << "]";
 		}
+
+	private:
+		bool need_to_resize()
+		{
+			return m_DataCount == m_DataSize;
+		}
+
+		void resize(size_t size)
+		{
+			T* temp = new T[size];
+			for (size_t i = 0; i < m_DataCount; i++)
+				temp[i] = m_Data[i];
+
+			delete[] m_Data;
+			m_Data = temp;
+			m_DataSize = size;
+		}
+
+	private:
+		T * m_Data;
+		size_t m_DataSize;
+		size_t m_DataCount;
 	};
 }

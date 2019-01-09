@@ -15,19 +15,6 @@ namespace mystd
 	{
 		friend class arraylist<T>;
 
-	private:
-		struct Node 
-		{
-			T item;
-			Node* next;
-			Node* prev;
-		};
-
-	private:
-		Node* m_Start;
-		Node* m_End;
-		size_t m_DataCount;
-
 	public:
 		linkedlist() 
 			: m_Start(nullptr), m_End(nullptr), m_DataCount(0) { }
@@ -342,5 +329,16 @@ namespace mystd
 				std::cout << "(" << current << ") -> " << current->prev << ", " << current->item << ", " << current->next << std::endl;
 		}
 
+	private:
+		struct Node
+		{
+			T item;
+			Node* next;
+			Node* prev;
+		};
+
+		Node* m_Start;
+		Node* m_End;
+		size_t m_DataCount;
 	};
 }

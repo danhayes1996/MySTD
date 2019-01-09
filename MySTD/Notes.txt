@@ -5,8 +5,31 @@ To add:
 	- priorty queue					X
 	- set							DONE
 	- map							X
-	- tree (binary tree)			X
+	- tree (binary tree)			HALF
 	- array							DONE
 	- arraylist						DONE
 	- linkedlist					DONE
 	- string						DONE
+
+
+	queue
+
+	Node {T item; Node next}
+
+	Node start, end;
+	int count;
+
+	enqueue
+		- items enter at the end
+		- count increases
+		- end updated to latest item
+
+	dequeue
+		- item exits from start
+		- count decreases
+		- start updated to be next after current start
+
+	search
+	empty
+
+	deque (double ended queue)

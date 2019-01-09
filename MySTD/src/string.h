@@ -11,10 +11,6 @@ namespace mystd
 	public:
 		static const size_t npos = -1;
 	
-	private:
-		char* m_Buffer;
-		size_t m_BufferCount;
-
 	public:
 		string();
 		string(const char* text);
@@ -55,5 +51,9 @@ namespace mystd
 		friend bool operator!=(const string& left, const string& right);
 		friend std::ostream& operator<<(std::ostream& stream, const string& text);
 		friend std::istream& operator>>(std::istream& stream, string& obj);
+
+	private:
+		char* m_Buffer;
+		size_t m_BufferCount;
 	};
 }

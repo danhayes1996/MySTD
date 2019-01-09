@@ -19,4 +19,22 @@ namespace mystd
 			return left > right;
 		}
 	};
+
+	template<typename T>
+	struct equal_to
+	{
+		bool operator()(const T& left, const T& right)
+		{
+			return left == right;
+		}
+	};
+
+	template<typename T>
+	struct not_equal_to
+	{
+		bool operator()(const T& left, const T& right)
+		{
+			return left == right;
+		}
+	};
 }
