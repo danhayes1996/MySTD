@@ -30,7 +30,8 @@
     <ClInclude Include="src\string.h" />
     <ClInclude Include="src\tests\testlinkedlist.h" />
     <ClInclude Include="src\tests\testlistspeed.h" />
-    <ClInclude Include="src\timer.h" />
+    <ClInclude Include="src\utilities\iterator.h" />
+    <ClInclude Include="src\utilities\timer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />

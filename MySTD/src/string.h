@@ -1,7 +1,10 @@
 #pragma once
 
-#include <iostream>
+#include <istream>
+#include <ostream>
 #include <initializer_list>
+
+#include "utilities/iterator.h"
 
 #define MAX_STRING_LENGTH 1024
 
@@ -10,10 +13,10 @@ namespace mystd
 	class string
 	{
 	public:
-		//THIS IS NOT HOW ITERATORS WORK IN STD LIBRARY
-		typedef char* iterator;
-		typedef const char* const_iterator;
-		
+		using iterator = typename mystd::iterator<char>;
+		using const_iterator = typename mystd::iterator<const char>;
+		using reverse_iterator = typename mystd::reverse_iterator<char>;
+		using const_reverse_iterator = typename mystd::reverse_iterator<const char>;
 
 		static const size_t npos = -1;
 
@@ -71,14 +74,27 @@ namespace mystd
 		/* @return a newly constructed copy of the string where all the characters are in reverse order (e.g. "abcde123" becomes "321edcba") */
 		string reverse() const;
 
-		/* THIS NEEDS TO BE REDESIGNED, ITERATORS DONT WORK THIS WAY */
+		/* @return an iterator pointing to the first character of the string. */
 		iterator begin();
-		/* THIS NEEDS TO BE REDESIGNED, ITERATORS DONT WORK THIS WAY */
+		/* @return a const iterator pointing to the first character of the string. */
 		const_iterator begin() const;
-		/* THIS NEEDS TO BE REDESIGNED, ITERATORS DONT WORK THIS WAY */
+		/* @return a const iterator pointing to the first character of the string (even if the source isnt const) */
+		const_iterator cbegin() const;
+		/* @return a reverse iterator pointing to the last character of the string */
+		reverse_iterator rbegin();
+		/* @return a const reverse iterator pointing to the last character of the string (even if the source isnt const) */
+		const_reverse_iterator crbegin() const;
+		/* @return an iterator pointing to the past-the-end character of the string */
 		iterator end();
-		/* THIS NEEDS TO BE REDESIGNED, ITERATORS DONT WORK THIS WAY */
+		/* @return a const iterator pointing to the past-the-end character of the string */
 		const_iterator end() const;
+		/* @return a const iterator pointing to the past-the-end character of the string (even if the source isnt const) */
+		const_iterator cend() const;
+		/* @return a reverse iterator pointing to the first character of the string */
+		reverse_iterator rend();
+		/* @return a const reverse iterator pointing to the first character of the string (even if the source isnt const) */
+		const_reverse_iterator crend() const;
+
 
 		/* @return a reference to the character at the specified position in the string */
 		char& at(size_t index);

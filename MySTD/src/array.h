@@ -4,11 +4,18 @@
 #include <initializer_list>
 #include <stdexcept>
 
+#include "utilities/iterator.h"
+
 namespace mystd {
 	template<typename T, size_t N>
 	class array 
 	{
 	public:
+		using iterator = typename mystd::iterator<T>;
+		using const_iterator = typename mystd::iterator<const T>;
+		using reverse_iterator = typename mystd::reverse_iterator<T>;
+		using const_reverse_iterator = typename mystd::reverse_iterator<const T>;
+
 		array() 
 			: m_Data(new T[N]) 
 		{ }
@@ -59,27 +66,55 @@ namespace mystd {
 			}
 		}
 
-		T* begin() 
+		iterator begin() 
 		{ 
-			return m_Data; 
+			return &m_Data[0]; 
 		}
 
-		const T* begin() const
+		const_iterator begin() const
 		{
 			return m_Data;
 		}
 
-		T* end() 
+		const_iterator cbegin() const
+		{
+			return m_Data;
+		}
+
+		reverse_iterator rbegin()
 		{
 			return &m_Data[N - 1];
 		}
 
-		const T* end() const 
+		const_reverse_iterator crbegin() const
 		{
 			return &m_Data[N - 1];
 		}
 
-		//add front/back const/non const functions when iterators are made
+		iterator end() 
+		{
+			return &m_Data[N];
+		}
+
+		const_iterator end() const
+		{
+			return &m_Data[N - 1];
+		}
+
+		const_iterator cend() const
+		{
+			return &m_Data[N - 1];
+		}
+
+		reverse_iterator rend()
+		{
+			return &m_Data[-1];
+		}
+
+		const_reverse_iterator crend() const
+		{
+			return &m_Data[-1];
+		}
 
 		T* data()
 		{

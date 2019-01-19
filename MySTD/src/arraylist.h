@@ -3,19 +3,27 @@
 #include <ostream>
 #include <initializer_list>
 #include <stdexcept>
+
 #include "linkedlist.h"
+#include "utilities/iterator.h"
 
 //forward declare so friend class linkedlist<T> can use arraylist private data
 template<typename T> class linkedlist;
 
 namespace mystd 
 {
+
 	template <typename T>
 	class arraylist 
 	{
 		friend class linkedlist<T>;
 
 	public:
+		using iterator = typename mystd::iterator<T>;
+		using const_iterator = typename mystd::iterator<const T>;
+		using reverse_iterator = typename mystd::reverse_iterator<T>;
+		using const_reverse_iterator = typename mystd::reverse_iterator<const T>;
+
 		arraylist(size_t size = 5) 
 			: m_Data(new T[size]), m_DataSize(size), m_DataCount(0) { }
 
@@ -53,17 +61,22 @@ namespace mystd
 			delete[] m_Data;
 		}
 
-		linkedlist<T> to_linked_list() const {
-			linkedlist<T> list;
-			for (size_t i = 0; i < m_DataCount; i++) list.push_back(m_Data[i]);
-			return list;
-		}
-
 		bool push_back(T item) 
 		{
 			if (need_to_resize()) resize(m_DataSize * 2);
 
 			m_Data[m_DataCount] = item;
+			m_DataCount++;
+			return true;
+		}
+
+		bool push_front(T item)
+		{
+			if (need_to_resize()) resize(m_DataSize * 2);
+			
+			for (size_t i = m_DataCount ; i > 0; i--)
+				m_Data[i] = m_Data[i - 1];
+			m_Data[0] = item;
 			m_DataCount++;
 			return true;
 		}
@@ -108,9 +121,9 @@ namespace mystd
 
 		bool remove(T item) 
 		{
-			int index = indexOf(item);
+			int index = index_of(item);
 			if (index == -1) return false;
-			removeAt(index);
+			remove_at(index);
 			return true;
 		}
 
@@ -128,7 +141,7 @@ namespace mystd
 		//indexFrom = inclusive, indexTo = inclusive
 		void remove_range_i(unsigned int indexFrom, unsigned int indexTo) 
 		{ 
-			removeRange(indexFrom, indexTo + 1);
+			remove_range(indexFrom, indexTo + 1);
 		}
 
 		void clear() 
@@ -175,7 +188,57 @@ namespace mystd
 
 		bool contains(T item) const
 		{
-			return indexOf(item) != -1;
+			return index_of(item) != -1;
+		}
+
+		iterator begin()
+		{
+			return m_Data;
+		}
+
+		const_iterator begin() const
+		{
+			return m_Data;
+		}
+
+		const_iterator cbegin() const
+		{
+			return m_Data;
+		}
+
+		reverse_iterator rbegin()
+		{
+			return &m_Data[m_DataCount - 1];
+		}
+
+		const_reverse_iterator crbegin() const
+		{
+			return &m_Data[m_DataCount - 1];
+		}
+
+		iterator end()
+		{
+			return &m_Data[m_DataCount];
+		}
+
+		const_iterator end() const
+		{
+			return &m_Data[m_DataCount];
+		}
+
+		const_iterator cend() const
+		{
+			return &m_Data[m_DataCount];
+		}
+
+		reverse_iterator rend()
+		{
+			return &m_Data[0];
+		}
+
+		const_reverse_iterator crend() const
+		{
+			return &m_Data[0];
 		}
 
 		const T& get(unsigned int index) const

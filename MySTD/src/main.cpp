@@ -1,41 +1,26 @@
 #include <iostream>
-#include "array.h"
-#include "string.h"
-#include <string>
-
-#include <vector>
-#include <iterator>
-
-struct data 
-{ 
-	int x; 
-	mystd::string y; 
-
-	data()
-		: x(2), y("dan")
-	{}
-
-	data(int x, const mystd::string& y)
-		: x(x), y(y)
-	{}
-
-	friend std::ostream& operator<<(std::ostream& stream, const data& d)
-	{
-		return stream << "(" << d.x << ", " << d.y << ")";
-	}
-};
-
+#include "arraylist.h"
 
 void main(void)
 {
-	std::vector<int>::iterator i;
+	mystd::arraylist<int> s = { 1,3,4,6 };
+	std::cout << s << std::endl;
+	s.push_front(12);
+	std::cout << s << std::endl;
+	s.push_front(67);
+	std::cout << s << std::endl;
+	/*for (mystd::arraylist<int>::reverse_iterator it = s.rbegin(); it != s.rend(); ++it)
+	{
+		std::cout << *it << " ";
+	}
+	std::cout << std::endl;
 
-	mystd::string s = "HELLO WORLD!";
-	mystd::string s2 = { 'a', 'b', 'c', 'd' };
-
-	std::cout << s.length() << std::endl;
-	std::cout << s2 << std::endl;
-	std::cout << s2.length() << std::endl;
+	mystd::string str = "abcdef";
+	for (mystd::string::const_iterator i = str.cbegin(); i != str.cend(); ++i)
+	{
+		std::cout << *i << " ";
+	}
+	std::cout << std::endl;
+	*/
 	system("PAUSE");
 }
-

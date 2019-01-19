@@ -201,6 +201,21 @@ mystd::string::const_iterator mystd::string::begin() const
 	return &m_Buffer[0];
 }
 
+mystd::string::const_iterator mystd::string::cbegin() const
+{
+	return &m_Buffer[0];
+}
+
+mystd::string::reverse_iterator mystd::string::rbegin()
+{
+	return &m_Buffer[m_BufferCount - 1];
+}
+
+mystd::string::const_reverse_iterator mystd::string::crbegin() const
+{
+	return &m_Buffer[m_BufferCount - 1];
+}
+
 mystd::string::iterator mystd::string::end()
 {
 	return &m_Buffer[m_BufferCount];
@@ -209,6 +224,21 @@ mystd::string::iterator mystd::string::end()
 mystd::string::const_iterator mystd::string::end() const
 {
 	return &m_Buffer[m_BufferCount];
+}
+
+mystd::string::const_iterator mystd::string::cend() const
+{
+	return &m_Buffer[m_BufferCount];
+}
+
+mystd::string::reverse_iterator mystd::string::rend()
+{
+	return &m_Buffer[-1];
+}
+
+mystd::string::const_reverse_iterator mystd::string::crend() const
+{
+	return &m_Buffer[-1];
 }
 
 char& mystd::string::at(size_t index)

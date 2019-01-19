@@ -30,9 +30,6 @@
     <ClInclude Include="src\stack.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\timer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\tests\testlistspeed.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -49,6 +46,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\queue.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utilities\timer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utilities\iterator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

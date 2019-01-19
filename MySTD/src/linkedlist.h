@@ -38,7 +38,7 @@ namespace mystd
 			: m_Start(nullptr), m_End(nullptr), m_DataCount(0)
 		{
 			for (size_t i = 0; i < other.m_DataCount; i++)
-				push_back(other.m_Data[i]); //TODO: is other[i] quicker??
+				push_back(other.m_Data[i]);
 		}
 
 		~linkedlist()
@@ -169,7 +169,7 @@ namespace mystd
 			{
 				if (n->item == item) 
 				{
-					removeAt(i);
+					remove_at(i);
 					return true;
 				}
 				n = n->next;
@@ -226,7 +226,7 @@ namespace mystd
 
 		bool remove_range_i(unsigned int indexFrom, unsigned int indexTo)
 		{
-			return removeRange(indexFrom, indexTo + 1);
+			return remove_range(indexFrom, indexTo + 1);
 		}
 
 		void clear()

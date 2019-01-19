@@ -4,12 +4,17 @@
 #include <initializer_list>
 #include <stdexcept>
 
-namespace mystd
-{
+namespace mystd {
 	template<typename T>
 	class stack
 	{
+	private:
+		struct Node;
+		class stack_iterator;
+
 	public:
+		using iterator = typename stack_iterator;
+
 		stack()
 			: m_Top(nullptr), m_DataCount(0) { }
 
@@ -23,7 +28,6 @@ namespace mystd
 		stack(const stack& other)
 			: m_Top(nullptr), m_DataCount(other.m_DataCount)
 		{
-			//HOW DOES THIS WORK?? HOW MUCH CAFFEINE WAS I ON
 			m_Top = new Node{ other.m_Top->item, nullptr };
 
 			Node* end = m_Top;
@@ -100,6 +104,16 @@ namespace mystd
 			return -1;
 		}
 
+		iterator begin()
+		{
+			return m_Top;
+		}
+
+		iterator end()
+		{
+			return nullptr;
+		}
+
 		friend std::ostream& operator<<(std::ostream& stream, const stack& s)
 		{
 			if (s.empty()) return stream << "stack:[empty]";
@@ -112,7 +126,7 @@ namespace mystd
 		}
 
 		//delete this function ( this is for testing only )
-		void print_address_trace() const 
+		void print_address_trace() const
 		{
 			Node* current = m_Top;
 			std::cout << "size:" << size() << std::endl;
@@ -120,8 +134,8 @@ namespace mystd
 				std::cout << "(" << current << ") -> " << current->item << ", " << current->next << std::endl;
 				current = current->next;
 			}
-
 		}
+
 	private:
 		struct Node
 		{
@@ -131,5 +145,48 @@ namespace mystd
 
 		Node* m_Top;
 		size_t m_DataCount;
+
+		//using it = typename mystd::iterator<stack<T>::Node>;
+
+//----------------------STACK ITERATOR----------------------
+	private:
+		class stack_iterator
+		{
+		public:
+			stack_iterator(Node* ptr)
+				: m_Ptr(ptr)
+			{
+			}
+
+			T& operator*()
+			{
+				return m_Ptr->item;
+			}
+
+			stack_iterator& operator++() //pre incremenet
+			{
+				m_Ptr = m_Ptr->next;
+				return *this;
+			}
+
+			stack_iterator operator++(int) //post increment
+			{
+				m_Ptr = m_Ptr->next;
+				return *this;
+			}
+
+			bool operator!=(const stack_iterator& other) const
+			{
+				return m_Ptr != other.m_Ptr;
+			}
+
+			bool operator==(const stack_iterator& other) const
+			{
+				return m_Ptr == other.m_Ptr;
+			}
+
+		private:
+			Node* m_Ptr;
+		};
 	};
 }
