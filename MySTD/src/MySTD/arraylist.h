@@ -5,7 +5,7 @@
 #include <stdexcept>
 
 #include "linkedlist.h"
-#include "utilities/iterator.h"
+#include "iterator.h"
 
 //forward declare so friend class linkedlist<T> can use arraylist private data
 template<typename T> class linkedlist;
@@ -100,12 +100,21 @@ namespace mystd
 			return true;
 		}
 
-		T set(int index, T item) 
+		T set(unsigned int index, T item) 
 		{
 			if (index >= m_DataCount) throw std::out_of_range("");
 			T ret = m_Data[index];
 			m_Data[index] = item;
 			return ret;
+		}
+
+		void assign(unsigned int count, T item)
+		{
+			if (m_DataSize < count) resize(count);
+			for (unsigned int i = 0; i < count; i++)
+				m_Data[i] = item;
+
+			m_DataCount = m_DataCount < count ? count : m_DataCount;
 		}
 
 		T remove_at(unsigned int index) 
@@ -190,6 +199,27 @@ namespace mystd
 		{
 			return index_of(item) != -1;
 		}
+
+		T& front() 
+		{
+			return m_Data[0];
+		}
+
+		const T& front() const
+		{
+			return m_Data[0];
+		}
+
+		T& back()
+		{
+			return m_Data[m_DataCount - 1];
+		}
+
+		const T& back() const
+		{
+			return m_Data[m_DataCount - 1];
+		}
+
 
 		iterator begin()
 		{

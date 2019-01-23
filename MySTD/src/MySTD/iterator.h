@@ -16,6 +16,18 @@ namespace mystd {
 			return *m_Ptr;
 		}
 
+		//CAN EXCEED iterators end (COULD BE DANGEROUS)
+		iterator operator+(int val)
+		{
+			return m_Ptr + val;
+		}
+
+		//CAN GO BELOW iterators begin (COULD BE DANGEROUS)
+		iterator operator-(int val)
+		{
+			return m_Ptr - val;
+		}
+
 		iterator& operator++() //pre incremenet
 		{
 			++m_Ptr;
@@ -64,25 +76,25 @@ namespace mystd {
 
 		reverse_iterator& operator++() //pre incremenet
 		{
-			--m_Ptr;
+			--this->m_Ptr;
 			return *this;
 		}
 
 		reverse_iterator operator++(int) //post increment
 		{
-			m_Ptr--;
+			this->m_Ptr--;
 			return *this;
 		}
 
 		reverse_iterator& operator--() //pre decrement
 		{
-			++m_Ptr;
+			++this->m_Ptr;
 			return *this;
 		}
 
 		reverse_iterator operator--(int) //post decrement
 		{
-			m_Ptr++;
+			this->m_Ptr++;
 			return *this;
 		}
 	};

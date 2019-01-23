@@ -4,7 +4,7 @@
 #include <initializer_list>
 #include <stdexcept>
 
-#include "utilities/iterator.h"
+#include "iterator.h"
 
 namespace mystd {
 	template<typename T, size_t N>

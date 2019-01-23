@@ -15,55 +15,46 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\tests\testlinkedlist.h">
+    <ClInclude Include="src\MySTD\array.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\array.h">
+    <ClInclude Include="src\MySTD\arraylist.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\arraylist.h">
+    <ClInclude Include="src\MySTD\btree.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\linkedlist.h">
+    <ClInclude Include="src\MySTD\linkedlist.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\stack.h">
+    <ClInclude Include="src\MySTD\queue.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\tests\testlistspeed.h">
+    <ClInclude Include="src\MySTD\set.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\string.h">
+    <ClInclude Include="src\MySTD\stack.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\set.h">
+    <ClInclude Include="src\MySTD\string.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\compare.h">
+    <ClInclude Include="src\MySTD\compare.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\btree.h">
+    <ClInclude Include="src\MySTD\iterator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\queue.h">
+    <ClInclude Include="src\MySTD\timer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\utilities\timer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\utilities\iterator.h">
+    <ClInclude Include="src\MySTD\algorithm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\string.cpp">
+    <ClCompile Include="src\MySTD\string.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="Notes.txt" />
   </ItemGroup>
 </Project>

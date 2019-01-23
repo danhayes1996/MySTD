@@ -3,6 +3,7 @@
 #include <ostream>
 #include <initializer_list>
 #include <stdexcept>
+
 #include "arraylist.h"
 
 //forward declare so friend class arraylist<T> can use linkedlist private data

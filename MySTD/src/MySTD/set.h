@@ -3,14 +3,20 @@
 #include <ostream>
 #include <initializer_list>
 #include <stdexcept>
-#include "compare.h"
 
-namespace mystd
-{
+#include "compare.h"
+#include "iterator.h"
+
+namespace mystd {
 	template<typename T, typename Compare = mystd::less<T>>
 	class set
 	{
 	public:
+		using iterator = typename mystd::iterator<const T>;
+		using const_iterator = typename mystd::iterator<const T>;
+		using reverse_iterator = typename mystd::reverse_iterator<const T>;
+		using const_reverse_iterator = typename mystd::reverse_iterator<const T>;
+
 		set(size_t size = 5)
 			: m_Data(new T[size]), m_DataSize(size), m_DataCount(0) { }
 
@@ -62,7 +68,7 @@ namespace mystd
 				Compare c;
 				for (size_t i = 0; i < m_DataCount; i++)
 				{
-					if (c(m_Data[i], item))
+					if (c(item, m_Data[i]))
 					{
 						//move shift items to the right of m_Data[i] up by one
 						for (size_t j = m_DataCount; j > i; j--)
@@ -110,14 +116,49 @@ namespace mystd
 			return -1;
 		}
 
-		const T* begin() const
+		iterator begin()
 		{
 			return m_Data;
 		}
 
-		const T* end() const
+		const_iterator begin() const
+		{
+			return m_Data;
+		}
+
+		const_iterator cbegin() const
+		{
+			return m_Data;
+		}
+
+		reverse_iterator rbegin()
 		{
 			return &m_Data[m_DataCount - 1];
+		}
+
+		const_reverse_iterator crbegin() const
+		{
+			return &m_Data[m_DataCount - 1];
+		}
+
+		iterator end()
+		{
+			return &m_Data[m_DataCount];
+		}
+
+		const_iterator end() const
+		{
+			return &m_Data[m_DataCount];
+		}
+
+		reverse_iterator rend()
+		{
+			return &m_Data[-1];
+		}
+
+		const_reverse_iterator crend() const
+		{
+			return &m_Data[-1];
 		}
 
 		const T& at(size_t index) const
@@ -171,7 +212,7 @@ namespace mystd
 		}
 
 	private:
-		T * m_Data;
+		T* m_Data;
 		size_t m_DataSize;
 		size_t m_DataCount;
 	};

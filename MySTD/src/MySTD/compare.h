@@ -21,7 +21,7 @@ namespace mystd
 	};
 
 	template<typename T>
-	struct equal_to
+	struct equal
 	{
 		bool operator()(const T& left, const T& right)
 		{
@@ -30,7 +30,7 @@ namespace mystd
 	};
 
 	template<typename T>
-	struct not_equal_to
+	struct not_equal
 	{
 		bool operator()(const T& left, const T& right)
 		{
