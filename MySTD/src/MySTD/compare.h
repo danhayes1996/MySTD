@@ -1,7 +1,6 @@
 #pragma once
 
-namespace mystd
-{
+namespace mystd {
 	template<typename T>
 	struct less
 	{

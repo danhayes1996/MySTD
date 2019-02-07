@@ -7,14 +7,14 @@
 #include "arraylist.h"
 
 //forward declare so friend class arraylist<T> can use linkedlist private data
-template<typename T> class arraylist;
+//template<typename T> class arraylist;
 
-namespace mystd 
-{
+namespace mystd  {
+
 	template<typename T>
 	class linkedlist 
 	{
-		friend class arraylist<T>;
+		//friend class arraylist<T>;
 
 	public:
 		linkedlist() 
@@ -34,14 +34,14 @@ namespace mystd
 			for (size_t i = 0; i < other.m_DataCount; i++, n = n->next) 
 				push_back(n->item);
 		}
-
+/*
 		linkedlist(const arraylist<T>& other) 
 			: m_Start(nullptr), m_End(nullptr), m_DataCount(0)
 		{
 			for (size_t i = 0; i < other.m_DataCount; i++)
 				push_back(other.m_Data[i]);
 		}
-
+*/
 		~linkedlist()
 		{
 			Node* currentNode = m_Start;
@@ -313,9 +313,9 @@ namespace mystd
 
 		friend std::ostream& operator<<(std::ostream& stream, const linkedlist& list)
 		{
-			if (list.empty()) return stream << "linkedlist:[empty]";
+			if (list.empty()) return stream << "linkedlist<" << typeid(T).name() << ">:[empty]";
 
-			stream << "linkedlist:[";
+			stream << "linkedlist<" << typeid(T).name() << ">:[";
 			for (linkedlist::Node* n = list.m_Start; n != list.m_End; n = n->next)
 				stream << n->item << ", ";
 			return stream << list.m_End->item << "]";

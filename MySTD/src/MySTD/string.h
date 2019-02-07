@@ -4,19 +4,20 @@
 #include <initializer_list>
 
 #include "iterator.h"
+#include "arraylist.h"
 
 
 #define MAX_STRING_LENGTH 1024
 
-namespace mystd
-{
+namespace mystd {
+
 	class string
 	{
 	public:
-		using iterator = typename mystd::iterator<char>;
-		using const_iterator = typename mystd::iterator<const char>;
-		using reverse_iterator = typename mystd::reverse_iterator<char>;
-		using const_reverse_iterator = typename mystd::reverse_iterator<const char>;
+		using iterator					= typename mystd::iterator<char>;
+		using const_iterator			= typename mystd::iterator<const char>;
+		using reverse_iterator			= typename mystd::reverse_iterator<char>;
+		using const_reverse_iterator	= typename mystd::reverse_iterator<const char>;
 
 		static const size_t npos = -1;
 
@@ -54,6 +55,13 @@ namespace mystd
 		/* @return whether the string ends with a specified sequence of characters */
 		bool ends_with(const string& charSeq) const;
 
+		/* @return whether the string contains only alphabetic characters. */
+		bool is_alpha() const;
+		/* @return whether the string contains only numeric characters. */
+		bool is_numeric() const;
+		/* @return whether the string contains only alphanumeric characters. */
+		bool is_alphanumeric() const;
+
 		/* @return the position of the first instance of a specified charater starting at the index specified (index is 0 by default) */
 		size_t index_of(char c, int index = 0) const;
 		/* @return the position of the first instance of a specified sequence of characters starting at the index specified (index is 0 by default) */
@@ -63,16 +71,37 @@ namespace mystd
 		/* @return the position of the last instance of a specified sequence of charaters ending at the index specified (index is npos by default) */
 		size_t last_index_of(const string& charSeq, size_t index = mystd::string::npos) const;
 
+		/* @return the number of times a specified character occurs in the string */
+		size_t occurrences(char c, size_t index = 0) const;
+		/* @return the number of times a specified character sequence occurs in the string */
+		size_t occurrences(const string& charSeq, size_t index = 0) const;
+
 		/* @return a newly constructed string with its value being a copy of the characters between pos and length */
 		string substr(size_t pos = 0, size_t length = npos) const;
 		/* @return a newly constructed copy of the string with all characters in lower case (e.g. "AbCDe123" becomes "abcde123") */
 		string to_lower() const;
 		/* @return a newly constructed copy of the string with all characters in upper case (e.g. "AbCDe123" becomes "ABCDE123") */
 		string to_upper() const;
-		/* @return a newly constructed copy of the string where all blank spaces before and after the string are removed (e.g. "    hello world! " becomes "hello world!") */
-		string trim() const;
+		/* @return a newly constructed copy of the string with the first letter of each word being capitalized (e.g. "hello world" becomes "Hello World") */
+		string to_proper() const;
 		/* @return a newly constructed copy of the string where all the characters are in reverse order (e.g. "abcde123" becomes "321edcba") */
 		string reverse() const;
+		/* @return a newly constructed copy of the string where all blank spaces before and after the string are removed (e.g. "    hello world! " becomes "hello world!") */
+		string trim() const;
+		/* @return a newly constructed copy of the string where each duplicate character is removed. (Duplicate space characters are removed if keepSpaces is set to false) */
+		string unique(bool keepSpaces = true) const;
+		/* clears the contents of the string. */
+		void clear();
+
+		/* @return the number of words in the string. */
+		size_t words() const;
+		/* @return an arraylist of strings, each element is a word in the string. */
+		mystd::arraylist<mystd::string> split(char c = ' ') const;
+
+		/* @return the string in hexadecimal format */
+		string hex() const;
+		/* @return the string in binary format */
+		string binary() const;
 
 		/* @return an iterator pointing to the first character of the string. */
 		iterator begin();

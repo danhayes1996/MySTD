@@ -8,15 +8,14 @@
 #include "iterator.h"
 
 //forward declare so friend class linkedlist<T> can use arraylist private data
-template<typename T> class linkedlist;
+//template<typename T> class linkedlist;
 
-namespace mystd 
-{
+namespace mystd {
 
 	template <typename T>
 	class arraylist 
 	{
-		friend class linkedlist<T>;
+		//friend class linkedlist<T>;
 
 	public:
 		using iterator = typename mystd::iterator<T>;
@@ -42,14 +41,14 @@ namespace mystd
 				m_Data[i] = other[i];
 		}
 		
-		arraylist(const linkedlist<T>& other) 
+/*		arraylist(const linkedlist<T>& other) 
 			: m_Data(new T[other.m_DataCount]), m_DataSize(other.m_DataCount), m_DataCount(other.m_DataCount)
 		{
 			linkedlist<T>::Node* n = other.m_Start;
 			for (size_t i = 0; n != nullptr; n = n->next, i++)
 				m_Data[i] = n->item;
 		}
-
+*/
 		arraylist(const T* arr, size_t count) 
 			: m_Data(new T[count]), m_DataSize(count), m_DataCount(count)
 		{
@@ -166,14 +165,19 @@ namespace mystd
 			return m_DataCount;
 		}
 
-		void trim_to_size() 
+		size_t capacity()
 		{
-			if (m_DataCount != m_DataSize) resize(m_DataCount);
+			return m_DataSize;
 		}
 
 		void ensure_capacity(size_t minCapacity) 
 		{
 			if (minCapacity > m_DataSize) resize(minCapacity);
+		}
+
+		void trim_to_size() 
+		{
+			if (m_DataCount != m_DataSize) resize(m_DataCount);
 		}
 
 		bool empty() const 
@@ -309,9 +313,9 @@ namespace mystd
 		
 		friend std::ostream& operator<<(std::ostream& stream, const arraylist& list) 
 		{
-			if (list.empty()) return stream << "arraylist:[empty]";
+			if (list.empty()) return stream << "arraylist<" << typeid(T).name() << ">:[empty]";
 
-			stream << "arraylist:[";
+			stream << "arraylist<" << typeid(T).name() << ">:[";
 			for (size_t i = 0; i < list.m_DataCount - 1; i++)
 				stream << list[i] << ", ";
 			return stream << list[list.m_DataCount - 1] << "]";

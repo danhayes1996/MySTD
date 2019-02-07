@@ -2,24 +2,27 @@
 
 #include <chrono>
 
-struct Timer
-{
-	std::chrono::time_point<std::chrono::steady_clock> start;
+namespace mystd {
 
-	Timer() 
+	struct timer
 	{
-		start = std::chrono::high_resolution_clock::now();
-	}
+		std::chrono::time_point<std::chrono::steady_clock> start;
 
-	void reset()
-	{
-		start = std::chrono::high_resolution_clock::now();
-	}
+		Timer() 
+		{
+			start = std::chrono::high_resolution_clock::now();
+		}
 
-	float timeElapsed()
-	{
-		std::chrono::duration<float> duration = std::chrono::high_resolution_clock::now() - start;
+		void reset()
+		{
+			start = std::chrono::high_resolution_clock::now();
+		}
 
-		return duration.count();
-	}
-};
+		float timeElapsed()
+		{
+			std::chrono::duration<float> duration = std::chrono::high_resolution_clock::now() - start;
+
+			return duration.count();
+		}
+	};
+}

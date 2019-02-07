@@ -1,7 +1,7 @@
 #pragma once
 
 #include <iostream>
-#include "../linkedlist.h"
+#include <MySTD\linkedlist.h>
 
 void testLinkedList() {
 	//CONSTRUCTOR
@@ -16,11 +16,11 @@ void testLinkedList() {
 	std::cout << "Is empty? -> " << (list.empty() ? "true" : "false") << "\t\t" << list << "\t\tsize = " << list.size() << std::endl;
 
 	//REMOVE ITEM AT INDEX 2
-	list.removeAt(2);
+	list.remove_at(2);
 	std::cout << "Removed item at index 2 -> \t" << list << "\t\tsize = " << list.size() << std::endl;
 
 	//ADDED ITEM AT INDEX 2
-	list.push_back(2, -1);
+	list.push_at(2, -1);
 	std::cout << "Added item at index 2 -> \t" << list << "\t\tsize = " << list.size() << std::endl;
 
 	//CHANGE ITEM AT INDEX 2
@@ -32,11 +32,11 @@ void testLinkedList() {
 	std::cout << "Remove 500 -> \t\t\t" << list << "\t\tsize = " << list.size() << std::endl;
 
 	//REMOVE RANGE 2 TO 4
-	list.removeRange(2, 4);
+	list.remove_range(2, 4);
 	std::cout << "Remove ranged 2 - 4 -> \t\t" << list << "\t\t\tsize = " << list.size() << std::endl;
 
 	//REMOVE RANGED INCLUSIVE 0 TO 4
-	list.removeRangeInclusive(0, 4);
+	list.remove_range_i(0, 4);
 	std::cout << "Remove range inclusive 0 - 4 -> " << list << "\t\t\t\t\tsize = " << list.size() << std::endl;
 
 	//CLEAR
@@ -58,7 +58,4 @@ void testLinkedList() {
 
 	//[] OPERATOR
 	std::cout << "list[2] -> " << list[2] << "\t\t\t" << list << "\t\tsize = " << list.size() << std::endl;
-
-	//[] OPERATOR
-	std::cout << "list[10] -> " << list[10] << "\t\t\t" << list << "\t\tsize = " << list.size() << std::endl;
 }

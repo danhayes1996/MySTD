@@ -261,3 +261,4 @@ __pycache__/
 *.pyc
 /TestMySTD/TestMySTD.vcxproj
 /TestMySTD/TestMySTD.vcxproj.filters
+/MySTD/src/MySTD/initializer_list.h

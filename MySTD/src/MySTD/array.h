@@ -159,7 +159,7 @@ namespace mystd {
 
 		friend std::ostream& operator<<(std::ostream& stream, const array& arr) 
 		{
-			stream << "array:[";
+			stream << "array<" << typeid(T).name() << ">:[";
 			for (size_t i = 0; i < N - 1; i++)
 				stream << arr[i] << ", ";
 			return stream << arr[N - 1] << "]";

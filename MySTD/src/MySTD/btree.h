@@ -4,8 +4,7 @@
 #include <initializer_list>
 #include <stdexcept>
 
-namespace mystd
-{
+namespace mystd {
 	template <typename T>
 	class binary_tree
 	{
@@ -111,7 +110,7 @@ namespace mystd
 
 		friend std::ostream& operator<<(std::ostream& stream, const binary_tree& tree)
 		{
-			stream << "binary_tree:[";
+			stream << "binary_tree<" << typeid(T).name() << ">:[";
 			tree.print_infix(stream, tree.m_Start);
 			return stream << " ]";
 		}

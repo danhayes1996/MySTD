@@ -5,15 +5,18 @@
 #include <stdexcept>
 
 namespace mystd {
+
 	template<typename T>
 	class stack
 	{
 	private:
 		struct Node;
+		template<typename N>
 		class stack_iterator;
 
 	public:
-		using iterator = typename stack_iterator;
+		using iterator = typename stack_iterator<Node>;
+		using const_iterator = typename stack_iterator<const Node>; //ERROR: operator*() in stack_iterator doesnt work with const
 
 		stack()
 			: m_Top(nullptr), m_DataCount(0) { }
@@ -109,16 +112,26 @@ namespace mystd {
 			return m_Top;
 		}
 
+		const_iterator cbegin()
+		{
+			return m_Top;
+		}
+
 		iterator end()
+		{
+			return nullptr;
+		}
+
+		const_iterator cend()
 		{
 			return nullptr;
 		}
 
 		friend std::ostream& operator<<(std::ostream& stream, const stack& s)
 		{
-			if (s.empty()) return stream << "stack:[empty]";
+			if (s.empty()) return stream << "stack<" << typeid(T).name() << ">:[empty]";
 
-			stream << "stack:[";
+			stream << "stack<" << typeid(T).name() << ">:[";
 			stack::Node* current = s.m_Top;
 			for (; current->next != nullptr; current = current->next)
 				stream << current->item << ", ";
@@ -141,26 +154,38 @@ namespace mystd {
 		{
 			T item;
 			Node* next;
+
+			T& operator*()
+			{
+				std::cout << "OPERATOR* USED IN NODE" << std::endl;
+				return item;
+			}
+
+			Node* operator++()
+			{
+				std::cout << "OPERATOR++ USED IN NODE" << std::endl;
+				return next;
+			}
+
 		};
 
 		Node* m_Top;
 		size_t m_DataCount;
 
-		//using it = typename mystd::iterator<stack<T>::Node>;
-
 //----------------------STACK ITERATOR----------------------
 	private:
+		template<typename N>
 		class stack_iterator
 		{
 		public:
-			stack_iterator(Node* ptr)
+			stack_iterator(N* ptr)
 				: m_Ptr(ptr)
 			{
 			}
 
 			T& operator*()
 			{
-				return m_Ptr->item;
+				return m_Ptr->item; //ERROR: cannot convert from 'const T' to 'T &' when const_iterator is used (const version of this function doesnt work)
 			}
 
 			stack_iterator& operator++() //pre incremenet
@@ -186,7 +211,7 @@ namespace mystd {
 			}
 
 		private:
-			Node* m_Ptr;
+			N* m_Ptr;
 		};
 	};
 }

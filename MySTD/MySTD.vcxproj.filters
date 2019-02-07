@@ -51,6 +51,9 @@
     <ClInclude Include="src\MySTD\algorithm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\MySTD\pair.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\MySTD\string.cpp">

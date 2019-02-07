@@ -8,6 +8,7 @@
 #include "iterator.h"
 
 namespace mystd {
+
 	template<typename T, typename Compare = mystd::less<T>>
 	class set
 	{
@@ -186,7 +187,7 @@ namespace mystd {
 
 		friend std::ostream& operator<<(std::ostream& stream, const set& s)
 		{
-			if (s.empty()) return stream << "set:[empty]" << std::endl;
+			if (s.empty()) return stream << "set<" << typeid(T).name()  << ">:[empty]" << std::endl;
 			
 			stream << "set<" << typeid(T).name() << ">:[";
 			for (size_t i = 0; i < s.m_DataCount - 1; i++)
