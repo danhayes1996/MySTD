@@ -313,9 +313,9 @@ namespace mystd {
 		
 		friend std::ostream& operator<<(std::ostream& stream, const arraylist& list) 
 		{
-			if (list.empty()) return stream << "arraylist<" << typeid(T).name() << ">:[empty]";
+			if (list.empty()) return stream << "[empty]";
 
-			stream << "arraylist<" << typeid(T).name() << ">:[";
+			stream << "[";
 			for (size_t i = 0; i < list.m_DataCount - 1; i++)
 				stream << list[i] << ", ";
 			return stream << list[list.m_DataCount - 1] << "]";

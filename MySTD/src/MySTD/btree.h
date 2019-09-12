@@ -4,10 +4,15 @@
 #include <initializer_list>
 #include <stdexcept>
 
+#include "arraylist.h"
+
 namespace mystd {
 	template <typename T>
 	class binary_tree
 	{
+	private:
+		struct Node;
+
 	public:
 		binary_tree()
 			: m_Start(nullptr), m_Count(0) { }
@@ -27,7 +32,7 @@ namespace mystd {
 
 		~binary_tree()
 		{
-
+			delete_recursive(m_Start);
 		}
 
 		bool empty() const
@@ -43,59 +48,43 @@ namespace mystd {
 		void rebalance()
 		{
 			//rebalance the tree to make it more efficient
+			//mystd::arraylist<T> data;
+			//to_array(m_Start, data);
 		}
 
 		bool search(const T& item) const
 		{
 			Node* current = m_Start;
-			while (current != nullptr)
-			{
-				if (current->item == item) return true;
-				if (item < current->item) current = current->left;
-				else current = current->right;
+			while (current) {
+				if (item == current->item) return true;
+				else if (item < current->item) {
+					current = current->left;
+				}
+				else if (item > current->item) {
+					current = current->right;
+				}
 			}
 			return false;
 		}
 
 		bool insert(const T& item)
 		{
-			if (m_Start == nullptr)
-			{
+			if (m_Count == 0) {
 				m_Start = new Node{ item, nullptr, nullptr };
 				m_Count++;
 				return true;
 			}
-
-			Node* current = m_Start;
-			while (current != nullptr) {
-				if (current->item == item) return false;
-
-				if (item < current->item)
-				{
-					if (current->left == nullptr)
-					{
-						current->left = new Node{ item, nullptr, nullptr };
-						break;
-					}
-					else current = current->left;
-				}
-				else if (item > current->item)
-				{
-					if (current->right == nullptr)
-					{
-						current->right = new Node{ item, nullptr, nullptr };
-						break;
-					}
-					else current = current->right;
-				}
-			}
-			m_Count++;
-			return true;
+			return insert_item(m_Start, item);
 		}
 
 		T remove(const T& item)
 		{
+			return NULL;
+		}
 
+		void clear() {
+			delete_recursive(m_Start);
+			m_Start = nullptr;
 		}
 
 		bool operator==(const binary_tree& other) const
@@ -110,12 +99,55 @@ namespace mystd {
 
 		friend std::ostream& operator<<(std::ostream& stream, const binary_tree& tree)
 		{
-			stream << "binary_tree<" << typeid(T).name() << ">:[";
-			tree.print_infix(stream, tree.m_Start);
+			if (tree.empty()) return stream << "[ empty ]";
+			stream << "[";
+			tree.print_prefix(stream, tree.m_Start);
 			return stream << " ]";
 		}
 
 	private:
+		bool insert_item(Node* n, const T& item) {
+			if (item < n->item) {
+				if (n->left) {
+					return insert_item(n->left, item);
+				}
+				else {
+					Node* newNode = new Node{ item, nullptr, nullptr };
+					n->left = newNode;
+					m_Count++;
+					return true;
+				}
+			}
+			else if (item > n->item) {
+				if (n->right) {
+					return insert_item(n->right, item);
+				}
+				else {
+					Node* newNode = new Node{ item, nullptr, nullptr };
+					n->right = newNode;
+					m_Count++;
+					return true;
+				}
+			}
+			return false; //items are equal
+		}
+
+		void to_array(Node* n, mystd::arraylist<T>& arr) {
+			if (!n) return;
+
+			if (n->left) to_array(n->left, arr);
+			arr.push_back(n->item);
+			if (n->right) to_array(n->right, arr);
+		}
+
+		void delete_recursive(Node* n) {
+			if (!n) return;
+			if (n->left) delete_recursive(n->left);
+			if (n->right) delete_recursive(n->right);
+			delete n;
+			m_Count--;
+		}
+
 		void print_infix(std::ostream& stream, Node* n) const
 		{
 			if (n != nullptr)

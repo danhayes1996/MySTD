@@ -41,7 +41,7 @@ namespace mystd {
 
 		friend std::ostream& operator<<(std::ostream& stream, const pair& p)
 		{
-			return stream << "pair<" << typeid(T1).name() << ", " << typeid(T2).name() << ">:[" << p.first << ", " << p.second << "]";
+			return stream << "(" << p.first << ", " << p.second << ")";
 		}
 	};
 

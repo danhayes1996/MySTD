@@ -313,9 +313,9 @@ namespace mystd  {
 
 		friend std::ostream& operator<<(std::ostream& stream, const linkedlist& list)
 		{
-			if (list.empty()) return stream << "linkedlist<" << typeid(T).name() << ">:[empty]";
+			if (list.empty()) return stream << "[empty]";
 
-			stream << "linkedlist<" << typeid(T).name() << ">:[";
+			stream << "[";
 			for (linkedlist::Node* n = list.m_Start; n != list.m_End; n = n->next)
 				stream << n->item << ", ";
 			return stream << list.m_End->item << "]";

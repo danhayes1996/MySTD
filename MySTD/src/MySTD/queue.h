@@ -97,9 +97,9 @@ namespace mystd {
 
 		friend std::ostream& operator<<(std::ostream& stream, const queue& q)
 		{
-			if (q.empty()) return stream << "queue<" << typeid(T).name() << ">:[empty]";
+			if (q.empty()) return stream << "[empty]";
 
-			stream << "queue<" << typeid(T).name() << ">:[";
+			stream << "[";
 			queue::Node* current = q.m_Start;
 			for (; current->next != nullptr; current = current->next)
 				stream << current->item << ", ";

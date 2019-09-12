@@ -187,9 +187,9 @@ namespace mystd {
 
 		friend std::ostream& operator<<(std::ostream& stream, const set& s)
 		{
-			if (s.empty()) return stream << "set<" << typeid(T).name()  << ">:[empty]" << std::endl;
+			if (s.empty()) return stream << "[empty]" << std::endl;
 			
-			stream << "set<" << typeid(T).name() << ">:[";
+			stream << "[";
 			for (size_t i = 0; i < s.m_DataCount - 1; i++)
 				stream << s.m_Data[i] << ", ";
 			return stream << s[s.m_DataCount - 1] << "]";

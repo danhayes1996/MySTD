@@ -129,9 +129,9 @@ namespace mystd {
 
 		friend std::ostream& operator<<(std::ostream& stream, const stack& s)
 		{
-			if (s.empty()) return stream << "stack<" << typeid(T).name() << ">:[empty]";
+			if (s.empty()) return stream << "[empty]";
 
-			stream << "stack<" << typeid(T).name() << ">:[";
+			stream << "[";
 			stack::Node* current = s.m_Top;
 			for (; current->next != nullptr; current = current->next)
 				stream << current->item << ", ";

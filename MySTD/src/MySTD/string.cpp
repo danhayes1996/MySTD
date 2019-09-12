@@ -135,7 +135,7 @@ namespace mystd {
 	size_t string::last_index_of(char c, size_t index/* = npos*/) const
 	{
 		if (index >= m_BufferCount) index = m_BufferCount;
-		for (int i = index; i >= 0; i--)
+		for (size_t i = index; i >= 0; i--)
 			if (m_Buffer[i] == c) return i;
 		return string::npos;
 	}

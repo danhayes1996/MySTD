@@ -90,6 +90,9 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>../MySTD/src</AdditionalIncludeDirectories>
     </ClCompile>
+    <Link>
+      <AdditionalDependencies>C:\Users\Dan\Desktop\C++ Workspace\MySTD\x64\Debug\MySTD.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
