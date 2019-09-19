@@ -1,28 +1,35 @@
 #include <iostream>
 
 #include <MySTD\string.h>
-#include <MySTD\array.h>
-#include <MySTD\arraylist.h>
-#include <MySTD\algorithm.h>
-#include <MySTD\pair.h>
-#include <MySTD\btree.h>
+#include <MySTD\pointer.h>
 
 int main(int argc, char** argv)
 {
-	mystd::binary_tree<int> t;
-	t.insert(5);
-	t.insert(3);
-	t.insert(1);
-	t.insert(2);
-	t.insert(7);
-	t.insert(6);
-	t.insert(10);
-	t.insert(4);
-	std::cout << t << std::endl;
+	{
+		mystd::unique<int> u;
+		*u = 5;
+		std::cout << *u << std::endl;
+	}
+	
+	{
+		mystd::unique<mystd::string> u;
+		*u = "abc";
+		std::cout << *u << std::endl;
+	}
 
-	t.clear();
+	{
+		mystd::unique<mystd::string> u(new mystd::string);
+		*u = "123";
+		std::cout << *u << std::endl;
+	}
 
-	std::cout << t << std::endl;
+	{
+		mystd::unique<mystd::string> u(new mystd::string("hello"));
+		std::cout << *u << std::endl;
+		*u = "qwerty";
+		std::cout << u->to_upper() << std::endl;
+	}
+
 	system("PAUSE");
 	return 0;
 }

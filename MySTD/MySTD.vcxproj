@@ -25,6 +25,7 @@
     <ClInclude Include="src\MySTD\btree.h" />
     <ClInclude Include="src\MySTD\compare.h" />
     <ClInclude Include="src\MySTD\linkedlist.h" />
+    <ClInclude Include="src\MySTD\pointer.h" />
     <ClInclude Include="src\MySTD\queue.h" />
     <ClInclude Include="src\MySTD\set.h" />
     <ClInclude Include="src\MySTD\stack.h" />
